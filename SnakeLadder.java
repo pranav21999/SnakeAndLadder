@@ -1,13 +1,5 @@
 public class SnakeLadder
 {			
-			// variables and constants
-			int position = 0;
-			int dieroll,choice;		
-			//uc 3 condition of no_play,snake and ladder
-			final int noplay=1;
-			final int snake=2;
-			final int ladder=3;
-			final int win=100;
 			
         void welcome()
         {
@@ -16,6 +8,17 @@ public class SnakeLadder
 		
 		void playerposition(int position)
 		{
+				// variables and constants
+			 position = 0;
+			int dieroll,choice;		
+			//uc 3 condition of no_play,snake and ladder
+			final int noplay=1;
+			final int snake=2;
+			final int ladder=3;
+			int win=100;
+		
+		 while(position <= 100)//uc 4 repeat loop until win
+		 {
 			System.out.println("Player position is "+position);//uc1 showing initial position of player
 			dieroll = (int)((Math.floor(Math.random() * 10)) % 6) + 1;	//uc2 genetare Random no between 1 to 6
 			//System.out.println("you are getting"+dieroll);
@@ -30,15 +33,14 @@ public class SnakeLadder
 			else if (choice == ladder)
 			{
 				position=position+dieroll;
-				if (position > win)
-				{
+				if (position == win)
 					position=position-dieroll;
-				}
 				System.out.println("player moves:"+dieroll);
 				System.out.println("player current position:"+position);
 			}	
-			if(position == win)
+			else if(position > win)
 			{
+				position=100;
 				System.out.println("player moves:"+dieroll);
 				System.out.println("player current position:"+position);
 				System.out.println("Player win");
@@ -46,11 +48,15 @@ public class SnakeLadder
 			else if (choice == snake)
 			{
 				position=position-dieroll;
+				System.out.println("player moves:"+dieroll);
+				System.out.println("player current position:"+position);
+				
 				if(position < 0)
 				{
 					position=0;
 				}
 			}			
+		 }
 		}
         public static void main(String args[])
         {		//object creation
